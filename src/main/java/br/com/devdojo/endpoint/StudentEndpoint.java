@@ -2,6 +2,8 @@ package br.com.devdojo.endpoint;
 
 import br.com.devdojo.error.CustomErrorType;
 import br.com.devdojo.model.Student;
+import br.com.devdojo.util.DateUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,6 +14,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("students")
 public class StudentEndpoint {
+    private DateUtil dateUtil;
+
+    @Autowired
+    public StudentEndpoint(DateUtil dateUtil) {
+        this.dateUtil = dateUtil;
+    }
 
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<?> listAll() {
